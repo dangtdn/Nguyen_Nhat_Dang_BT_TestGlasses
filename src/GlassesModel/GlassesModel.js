@@ -34,14 +34,18 @@ export default class GlassesModel extends Component {
     ];
 
     state = {
-        imgSrc: './glassesImage/v1.png'
+        imgSrc: './glassesImage/v1.png',
+        info: 'Light pink square lenses define these sunglasses, ending with amother of pearl effect tip.',
+        title: 'FENDI F8750'  
     }
 
     changeGlasses = (id) => {
         const newGlasses = this.arrProduct.find(item => item.id === id)
-        let {url} = newGlasses;
+        let {url,desc,name} = newGlasses;
         this.setState({
-            imgSrc: url 
+            imgSrc: url,
+            info: desc,
+            title: name 
         })
         console.log(this.state.imgSrc)
     }
@@ -77,9 +81,9 @@ export default class GlassesModel extends Component {
                                     <div className={`col-3 ${style.modelBox} p-0`}>
                                         <img className='w-100 h-100' src='./glassesImage/model.jpg' />
                                         <div className={`${style.info}`}>
-                                            <h3 style={{ color: 'blue' }}>FENDI F8750</h3>
+                                            <h3 style={{ color: 'blue' }}>{this.state.title}</h3>
                                             <p style={{ color: '#fff' }}>
-                                                Light pink square lenses define these sunglasses, ending with amother of pearl effect tip.
+                                                {this.state.info}
                                             </p>
                                         </div>
                                         <div className={`${style.vglassesModel}`}>
