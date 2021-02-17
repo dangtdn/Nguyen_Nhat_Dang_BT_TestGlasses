@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Glass from '../components/Content/Glass';
+import Header from '../components/Header';
 import style from './GlassesModel.module.css'
 
 export default class GlassesModel extends Component {
@@ -50,29 +52,10 @@ export default class GlassesModel extends Component {
         console.log(this.state.imgSrc)
     }
 
-    renderGlassesList = () => {
-
-        const arrList =  this.arrProduct.map((item,index) => {
-            // this.setState({
-            //     imgSrc: `./glassesImage/g${item.id}.jpg`,
-            // })
-            return <div key={index} className='col-2 d-flex align-items-center' style={{cursor:'pointer'}} onClick={() => {
-                this.changeGlasses(item.id)
-            }}>
-                <img className='w-100' src={`./glassesImage/g${item.id}.jpg`}/>
-            </div>
-        });
-        return arrList
-    }
-
     render() {
         return (
             <div className='body' style={{backgroundImage:'url(./glassesImage/background.jpg)',minHeight:'700px'}}>
-                <div className='header text-center'>
-                    <div className={`${style.overplay}`}>
-                    <h2 style={{color:'#fff',padding:'15px'}}>TRY GLASSES APP ONLINE</h2>
-                    </div>
-                </div>
+                <Header />
                 <div className='content'>
                     <div className='container'>
                         <div className='row'>
@@ -98,7 +81,14 @@ export default class GlassesModel extends Component {
                             </div>
                             <div className='col-12 pt-4'>
                                 <div className='row' style={{background:'#fff',border:'1px solid black'}}>
-                                    {this.renderGlassesList()}
+                                    {this.arrProduct.map((item,index) => {
+                                        return <Glass
+                                            key={index}
+                                            itemGlasses={item}
+                                            changeGlasses={this.changeGlasses}
+                                        />
+                                    })}
+                                    
                                 </div>
                             </div>
                         </div>
